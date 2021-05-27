@@ -1,0 +1,16 @@
+ul {
+    list-style-type: square;
+}
+
+.posts {
+    list-style-type: none;
+    padding: 0;
+}
+
+.posts li {
+    display: flex;
+}
+
+.posts li .date {
+    margin-right: 10px;
+}
