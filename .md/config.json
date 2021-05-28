@@ -1,0 +1,14 @@
+{
+  "SyntaxHighlight": {
+    "Enabled": true,
+    "Style": "dracula",
+    "LineNumbers": true
+  },
+  "Ignore": ["style.scss"],
+  "NoWatch": ["style.css", "style.css.map"],
+  "Hooks": {
+    "Build": {
+      "Before": ["sass style.scss .md/out/style.css"]
+    }
+  }
+}
