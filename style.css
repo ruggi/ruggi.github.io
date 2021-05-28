@@ -1,16 +1,81 @@
-ul {
-    list-style-type: square;
+@import url("https://fonts.xz.style/serve/inter.css");
+@import url("https://cdn.jsdelivr.net/npm/@xz/fonts@1/serve/ibm-plex-mono.min.css");
+:root {
+  --font-mono: "IBM Plex Mono";
+  --font-sans: Inter;
+  --color-bg: #000;
+  --color-fg: #bbb;
+  --color-fg-muted: #333;
+  --color-wireframe: #111;
+  --color-accent: #fff;
 }
 
-.posts {
-    list-style-type: none;
-    padding: 0;
+body {
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-size: 14px;
+  font-family: var(--font-mono);
 }
 
-.posts li {
-    display: flex;
+a {
+  color: var(--color-accent);
+}
+a:hover {
+  color: #000;
+  background: var(--color-accent);
 }
 
-.posts li .date {
-    margin-right: 10px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-accent);
+  font-weight: 500;
+  font-family: var(--font-sans);
+  margin: 10px 0;
 }
+
+pre {
+  padding: 10px;
+  border: 1px solid var(--color-wireframe);
+}
+
+hr {
+  border: 1px solid var(--color-wireframe);
+}
+
+img {
+  max-width: 100%;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 900px;
+  margin: 20px auto;
+  border: 1px solid var(--color-wireframe);
+  padding: 10px;
+}
+.wrap .top {
+  border: 1px solid var(--color-wireframe);
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.wrap .main {
+  border: 1px solid var(--color-wireframe);
+  padding: 10px;
+}
+.wrap .main > :first-child {
+  margin-top: 0;
+}
+.wrap .main > :last-child {
+  margin-bottom: 0;
+}
+.wrap .main .posts {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/*# sourceMappingURL=style.css.map */
