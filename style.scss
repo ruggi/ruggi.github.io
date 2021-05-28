@@ -5,10 +5,12 @@
   --font-mono: "IBM Plex Mono";
   --font-sans: Inter;
   --color-bg: #000;
-  --color-fg: #bbb;
+  --color-fg: #888;
   --color-fg-muted: #333;
   --color-wireframe: #111;
   --color-accent: #fff;
+  --color-link: #fff;
+  --color-link-hover: rgb(253, 252, 182);
 }
 
 body {
@@ -16,13 +18,26 @@ body {
   color: var(--color-fg);
   font-size: 14px;
   font-family: var(--font-mono);
+  // font-weight: 500;
+}
+
+ul {
+  list-style-type: square;
 }
 
 a {
-  color: var(--color-accent);
+  color: var(--color-link);
+  text-decoration: none;
+  &::before {
+    content: "[";
+    color: var(--color-fg-muted);
+  }
+  &::after {
+    content: "]";
+    color: var(--color-fg-muted);
+  }
   &:hover {
-    color: #000;
-    background: var(--color-accent);
+    color: var(--color-link-hover);
   }
 }
 
@@ -41,6 +56,12 @@ h6 {
 pre {
   padding: 10px;
   border: 1px solid var(--color-wireframe);
+}
+
+code {
+  color: rgb(61, 255, 197);
+  background: rgb(0, 37, 27);
+  padding: 0 4px;
 }
 
 hr {
