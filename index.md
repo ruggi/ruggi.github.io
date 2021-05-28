@@ -6,8 +6,6 @@ I live in Amsterdam, where I work at [Stream](https://getstream.io) as Backend T
 
 You can find me on [GitHub](https://github.com/ruggi) and [Twitter](https://twitter.com/ruggif).
 
----
-
 ## Posts
 <ul class="posts">
 {{ range $index, $page := reverse ( byDate .Pages.blog ) }}

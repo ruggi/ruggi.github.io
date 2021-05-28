@@ -8,9 +8,9 @@
   <body>
     <div class="wrap">
       <div class="top">
-        <a href="/">Home</a>
-        <a href="/projects.html">Projects</a>
-        <a href="/3d-prints.html">3D Prints</a>
+        <a class="{{ if eq .Path "index.md" }} current {{ end }}" href="/">Home</a>
+        <a class="{{ if eq .Path "projects.md" }} current {{ end }}" href="/projects.html">Projects</a>
+        <a class="{{ if eq .Path "3d-prints.md" }} current {{ end }}" href="/3d-prints.html">3D Prints</a>
       </div>
       <div class="main">{{ .Content }}</div>
     </div>
