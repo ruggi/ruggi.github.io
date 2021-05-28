@@ -19,6 +19,14 @@ jobs:
       - name: Install md
         run: go get github.com/ruggi/md@680593b
 
+      - name: Install npm
+        uses: actions/setup-node@v2
+        with:
+          node-version: "15"
+
+      - name: Install Sass
+        run: npm i -g sass
+
       - name: Build
         run: md build
 
