@@ -44,7 +44,9 @@ pre {
 }
 
 hr {
-  border: 1px solid var(--color-wireframe);
+  border: none;
+  height: 1px;
+  background: var(--color-wireframe);
 }
 
 img {
