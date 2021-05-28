@@ -8,8 +8,6 @@
   --color-fg-muted: #333;
   --color-wireframe: #111;
   --color-accent: #fff;
-  --color-link: #fff;
-  --color-link-hover: rgb(253, 252, 182);
 }
 
 body {
@@ -24,19 +22,12 @@ ul {
 }
 
 a {
-  color: var(--color-link);
-  text-decoration: none;
-}
-a::before {
-  content: "[";
-  color: var(--color-fg-muted);
-}
-a::after {
-  content: "]";
-  color: var(--color-fg-muted);
+  font-weight: 500;
+  color: var(--color-accent);
 }
 a:hover {
-  color: var(--color-link-hover);
+  color: var(--color-bg);
+  background: var(--color-accent);
 }
 
 h1,
@@ -60,6 +51,7 @@ code {
   color: #3dffc5;
   background: #00251b;
   padding: 0 4px;
+  font-family: var(--font-mono);
 }
 
 hr {
