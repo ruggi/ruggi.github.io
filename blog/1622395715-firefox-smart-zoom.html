@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Double-tap zoom on Firefox</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <a class="" href="/">Home</a>
+        <a class="" href="/projects.html">Projects</a>
+        <a class="" href="/3d-prints.html">3D Prints</a>
+      </div>
+      <div class="main"><h1 id="double-tap-zoom-on-firefox">Double-tap zoom on Firefox</h1>
+<p>Firefox now supports the double-tap &quot;smart zoom&quot; feature, similar to the one of Safari, on macOS.</p>
+<p>Unless I'm mistaken, this has been enabled with <a href="https://github.com/mozilla/gecko-dev/commit/7d1fc308716c5ff5d2c3ec04b7c3bb4432d6060d">this commit</a>. Weirdly there are two different settings to have the feature fully enabled, but still, it works pretty well - not as polished as on Safari, but it gets the job done.</p>
+<p>To enable it, head to <code>about:config</code> and make sure these two settings are set to <code>true</code>:</p>
+<ul>
+<li><code>apz.allow_double_tap_zooming</code></li>
+<li><strong><code>apz.mac.enable_double_tap_zoom_touchpad_gesture</code></strong></li>
+</ul>
+<p>Yay!</p>
+</div>
+    </div>
+  </body>
+</html>
