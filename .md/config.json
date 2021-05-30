@@ -1,7 +1,7 @@
 {
   "SyntaxHighlight": {
     "Enabled": true,
-    "Style": "dracula",
+    "Style": "github",
     "LineNumbers": true
   },
   "Ignore": ["style.scss"],
