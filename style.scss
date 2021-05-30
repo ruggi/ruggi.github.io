@@ -10,6 +10,8 @@
   --color-fg-muted: #888;
   --color-wireframe: #eee;
   --color-accent: #000;
+  --color-code-fg: rgb(35, 126, 100);
+  --color-code-bg: rgb(219, 255, 245);
 }
 
 body {
@@ -55,8 +57,8 @@ pre {
 }
 
 code {
-  color: rgb(61, 255, 197);
-  background: rgb(0, 37, 27);
+  color: var(--color-code-fg);
+  background: var(--color-code-bg);
   padding: 0 4px;
   font-family: var(--font-mono) !important;
 }
