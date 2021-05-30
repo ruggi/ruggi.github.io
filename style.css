@@ -5,11 +5,11 @@
     "Courier New", Courier, monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  --color-bg: #000;
-  --color-fg: #888;
-  --color-fg-muted: #333;
-  --color-wireframe: #111;
-  --color-accent: #fff;
+  --color-bg: #fff;
+  --color-fg: #666;
+  --color-fg-muted: #888;
+  --color-wireframe: #eee;
+  --color-accent: #000;
 }
 
 body {
@@ -87,10 +87,11 @@ img {
   margin-right: 10px;
 }
 .wrap .top a.current {
+  text-decoration: none;
   color: var(--color-fg);
 }
 .wrap .top a.current:hover {
-  color: var(--color-bg);
+  background: inherit;
 }
 .wrap .main {
   padding: 10px;
