@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>An Alfred workflow to create calendar events with natural language</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <script async defer data-domain="ruggi.github.io" src="https://plausible.ruggi.xyz/js/plausible.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top">
+        <a class="" href="/">Home</a>
+        <a class="" href="/projects.html">Projects</a>
+        <a class="" href="/3d-prints.html">3D Prints</a>
+      </div>
+      <div class="main"><h1 id="an-alfred-workflow-to-create-calendar-events-with-natural-language">An Alfred workflow to create calendar events with natural language</h1>
+<p>I've been using Fantastical on and off for some years now, and although I'm not using it right now one of my favorite things about it has always creating new calendar events on the fly by bringing up the mini menubar app with the global keyboard shortcut and entering the event details with natural language recognition.</p>
+<p>As I mentioned, I'm not using Fantastical anymore but I miss that quick interaction dearly; so I decided to try and mimic that interaction by creating a workflow for <a href="https://alfredapp.com">Alfred</a>: invoking Alfred is already part of my muscular memory, so I thought it would be <em>awesome</em> to have Fantastical-like calendar event creation capabilities there.</p>
+<p>So, here it is what I have so far:</p>
+<p><img src="https://github.com/ruggi/calfred/raw/main/images/calfred.gif" alt="Calfred" /></p>
+<p>This little workflow is called <a href="https://github.com/ruggi/calfred">Calfred</a> and you can download it from <a href="https://github.com/ruggi/calfred/releases/latest">the GitHub releases page</a>: it supports &quot;kinda-natural&quot; language and it has an auto-update feature so that when a new release is published on GitHub it will automatically fetch it and update itself.</p>
+<p>When you install the workflow you'll need to set the name of the target calendar you want to put your events in (no multiple calendars support at the moment of writing), and then you can use the workflow with the <code>cal</code> keyword.</p>
+<p>Now, about the real meat - the &quot;kinda-natural&quot; language recognition: it is definitely <em>not</em> sophisticated but rather a simple set of regular expressions and evaluations so that it can extract time/date/duration from a string and use the remaining string tokens as the &quot;subject&quot; of the event: I made a small <a href="https://github.com/ruggi/quando">Go package</a> for it, inspired by some other similar projects but with my own personal twist.</p>
+<p>Some of the events you can create with Calfred:</p>
+<ul>
+<li><code>buy groceries at 5pm</code></li>
+<li><code>buy groceries tomorrow at 16 PDT</code></li>
+<li><code>run the marathon in 2 months</code></li>
+<li><code>meeting with the team next wednesday at 3pm for 2 hours</code></li>
+<li><code>xmas sweater party on dec 23, 2021 at 5pm for 45 minutes</code></li>
+</ul>
+<p>Again, nothing super spectacular and nowhere close a proper NLP engine for dates, but at least for my usage it covers everything I need.</p>
+<p>Of course if you find it useful and have any feature request or bug report feel free to hit the <a href="https://github.com/ruggi/calfred/issues">issues page</a>.</p>
+</div>
+    </div>
+  </body>
+</html>
