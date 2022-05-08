@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Postgres where-not-exists <-> count</title>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      
+      <div class="top">
+        <a href="/">~</a>
+        
+        <span><a href="/blog">blog</a></span> 
+      </div>
+      
+      <div class="main">
+        <div class="meta">
+          
+          Thu May  5, 2022 
+        </div>
+        <h1 id="postgres-where-not-exists---count">Postgres where-not-exists &lt;-&gt; count</h1>
+<p>Talking about Postgres, here's an interesting scenario where a <code>SELECT</code> query, which intuitively should be reasonably fast in a very large table, turns out to be <em>thousands</em> times slower than a variation which should instead intuitively be a lot slower.</p>
+<h2 id="exhibit-a">Exhibit A</h2>
+<pre style="color:#f8f8f2;background-color:#282a36"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#ff79c6">FROM</span> A
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#ff79c6">WHERE</span> <span style="color:#ff79c6">NOT</span> <span style="color:#ff79c6">EXISTS</span> (
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>    <span style="color:#ff79c6">SELECT</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>    <span style="color:#ff79c6">FROM</span> B
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>    <span style="color:#ff79c6">WHERE</span> A.foo <span style="color:#ff79c6">=</span> B.foo
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span style="color:#ff79c6">LIMIT</span> <span style="color:#bd93f9">10000</span>;
+</pre><h2 id="exhibit-b">Exhibit B</h2>
+<pre style="color:#f8f8f2;background-color:#282a36"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">*</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span style="color:#ff79c6">FROM</span> A
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span style="color:#ff79c6">WHERE</span> (
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span>    <span style="color:#ff79c6">SELECT</span> <span style="color:#ff79c6">COUNT</span>(<span style="color:#ff79c6">*</span>)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span>    <span style="color:#ff79c6">FROM</span> B
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span>    <span style="color:#ff79c6">WHERE</span> A.foo <span style="color:#ff79c6">=</span> B.foo
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span>) <span style="color:#ff79c6">=</span> <span style="color:#bd93f9">0</span>
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span style="color:#ff79c6">LIMIT</span> <span style="color:#bd93f9">10000</span>;
+</pre><p>One would assume that exhibit A would be faster than exhibit B, right?</p>
+<p><em>Nope</em>.</p>
+<h2 id="costs">Costs</h2>
+<p>Here's the cost for the first query:</p>
+<pre style="color:#f8f8f2;background-color:#282a36"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>Limit (cost=5999.xx..xxxxx.xx) rows=10000 width=...)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>    -&gt; Merge Anti Join (cost=5999.xx..xxxxxxxxx.xx rows=... width=...)
+</pre><p>And here's the cost for the second query:</p>
+<pre style="color:#f8f8f2;background-color:#282a36"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span>Limit (cost=0.57..xxxxxxxx.xx rows=10000 width=...)
+<span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span>    -&gt; Index Scan using ... on ... (cost=0.57..xxxxxxxxx.xx rows=... width=...)
+</pre><p>There might be something weird going on with the DB schema here, but in the real-world version of the snippets above the <code>foo</code> columns are both PKs.</p>
+<p>I'm not really sure what's going on here - it's probably something silly or trivial (and I'm no PG expert in any way), but the results are quite puzzling.</p>
+
+      </div>
+    </div>
+  </body>
+</html>
