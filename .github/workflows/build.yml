@@ -12,7 +12,7 @@ jobs:
         with:
           go-version: "^1.18.1"
       - name: Install md
-        run: go get github.com/ruggi/md@latest
+        run: go install github.com/ruggi/md@latest
       - name: Install npm
         uses: actions/setup-node@v2
         with:
