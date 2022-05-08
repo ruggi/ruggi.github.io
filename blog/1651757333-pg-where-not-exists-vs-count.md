@@ -1,4 +1,4 @@
-# Postgres where-not-exists <-> count
+# Postgres where-not-exists ↔ count
 
 Talking about Postgres, here's an interesting scenario where a `SELECT` query, which intuitively should be reasonably fast in a very large table, turns out to be *thousands* times slower than a variation which should instead intuitively be a lot slower.
 
