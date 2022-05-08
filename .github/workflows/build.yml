@@ -17,7 +17,7 @@ jobs:
           go-version: "^1.16.2"
 
       - name: Install md
-        run: go get github.com/ruggi/md@680593b
+        run: go get github.com/ruggi/md@latest
 
       - name: Install npm
         uses: actions/setup-node@v2
