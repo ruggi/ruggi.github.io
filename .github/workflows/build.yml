@@ -14,7 +14,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: "^1.16.2"
+          go-version: "^1.18.1"
 
       - name: Install md
         run: go get github.com/ruggi/md@latest
