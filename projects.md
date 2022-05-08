@@ -1,8 +1,6 @@
 # Projects
 
-Here are some of my personal projects I work on in my spare time.
-
-You can find more on my [GitHub account](https://github.com/ruggi).
+> Stuff I work on in my spare time. _([¬](https://github.com/ruggi))_
 
 ## [calfred](https://github.com/ruggi/calfred)
 

@@ -1,6 +1,6 @@
-# 3D Prints
+# 3D prints
 
-This is a collection of useful 3D prints I use and some other useful things for future reference.
+> Useful 3D prints I use for future reference.
 
 ## Models
 
