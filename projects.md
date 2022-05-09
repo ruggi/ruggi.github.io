@@ -2,7 +2,7 @@
 
 > Stuff I work on in my spare time. _([¬](https://github.com/ruggi))_
 
-## [Go time format](https://plausible.io/gotimefmt.vercel.app)
+## [Go time format](https://gotimefmt.vercel.app)
 
 Guess the Go time formatting layout string from a real world time string.
 
